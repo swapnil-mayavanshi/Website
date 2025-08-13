@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master AI, Machine Learning, Large Language Models, and AI Agents with AI Academy's expert training and career guidance. Join the AI revolution today!">
+    <meta name="keywords" content="AI training, machine learning, large language models, AI agents, career in AI">
+    <meta name="author" content="AI Academy">
+    <title>AI Academy - Master AI, ML, LLMs & AI Agents</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        /* Ensure content visibility */
+        body {
+            background-color: #111827 !important;
+            color: #f3f4f6 !important;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111827;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #8B5CF6, #EC4899);
+            border-radius: 10px;
+        }
+
+        /* Custom cursor */
+        .js-enabled {
+            cursor: none;
+        }
+
+        #custom-cursor {
+            position: fixed;
+            z-index: 9999;
+            pointer-events: none;
+            width: 24px;
+            height: 24px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.8) 20%, rgba(236, 72, 153, 0.4) 60%, transparent 70%);
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out, opacity 0.2s ease;
+            opacity: 0.8;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+        }
+
+        /* Service card animations */
+        .service-card {
+            transition: all 0.3s ease-in-out;
+        }
+        .service-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Hover effects */
+        .magnetic-hover {
+            transition: transform 0.3s ease;
+        }
+        .magnetic-hover:hover {
+            transform: scale(1.05);
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(270deg, #8B5CF6, #EC4899, #F59E0B);
+            background-size: 300% 300%;
+            animation: gradient-shift 3s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Ensure mobile menu is properly positioned */
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        #mobile-menu.show {
+            transform: translateX(0);
+        }
+
+        /* Fade in animations */
+        .fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        /* Company logo hover */
+        .company-logo {
+            transition: all 0.3s ease;
+            filter: grayscale(70%) brightness(0.9);
+        }
+        .company-logo:hover {
+            filter: grayscale(0%) brightness(1.1);
+            transform: scale(1.1);
+        }
+
+        /* Ensure all text is visible */
+        .text-white {
+            color: #ffffff !important;
+        }
+        .text-gray-100 {
+            color: #f3f4f6 !important;
+        }
+        .text-gray-300 {
+            color: #d1d5db !important;
+        }
+        .text-gray-400 {
+            color: #9ca3af !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 font-sans text-gray-100 antialiased">
+    <!-- Custom cursor -->
+    <div id="custom-cursor"></div>
+
+    <!-- Header -->
+    <header class="bg-gray-900 sticky top-0 z-50 shadow-lg border-b border-gray-800">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="#" class="flex items-center space-x-2 group magnetic-hover">
+                    <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        AI
+                    </div>
+                    <span class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">AI Academy</span>
+                </a>
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-toggle" class="md:hidden text-gray-400 hover:text-purple-400 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Desktop menu -->
+            <div class="hidden md:flex space-x-8 text-gray-300 font-medium">
+                <a href="#services" class="hover:text-purple-400 transition-colors duration-200">Services</a>
+                <a href="#why-important" class="hover:text-purple-400 transition-colors duration-200">Why AI?</a>
+                <a href="#career" class="hover:text-purple-400 transition-colors duration-200">Career</a>
+                <a href="#tech" class="hover:text-purple-400 transition-colors duration-200">Technologies</a>
+                <a href="#contact" class="hover:text-purple-400 transition-colors duration-200">Contact</a>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="fixed inset-y-0 right-0 w-3/4 max-w-sm bg-gray-900 p-6 md:hidden z-50">
+                <button id="mobile-menu-close" class="mb-6 text-gray-400 hover:text-purple-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <div class="flex flex-col space-y-4 text-gray-300 font-medium">
+                    <a href="#services" class="hover:text-purple-400 transition-colors duration-200">Services</a>
+                    <a href="#why-important" class="hover:text-purple-400 transition-colors duration-200">Why AI?</a>
+                    <a href="#career" class="hover:text-purple-400 transition-colors duration-200">Career</a>
+                    <a href="#tech" class="hover:text-purple-400 transition-colors duration-200">Technologies</a>
+                    <a href="#contact" class="hover:text-purple-400 transition-colors duration-200">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="bg-gray-900 py-16 md:py-24 relative overflow-hidden fade-in">
+            <div class="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-pink-900/20"></div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center space-y-12 md:space-y-0 md:space-x-12 text-center md:text-left relative z-10">
+                <div class="md:w-1/2">
+                    <div class="inline-block px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-sm font-medium text-white mb-6">
+                        🚀 Join the AI Revolution - High-Demand Skills
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                        Master the Future of 
+                        <span class="gradient-text">AI & Machine Learning</span>
+                    </h1>
+                    <p class="mt-6 text-lg text-gray-300 max-w-xl mx-auto md:mx-0">
+                        Transform your career with expert training in AI, ML, Large Language Models, and AI Agents. Learn the skills that tech giants like Google, Microsoft, and OpenAI are desperately seeking.
+                    </p>
+                    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="#contact" class="magnetic-hover px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-bold text-lg transition-transform duration-300 hover:scale-105">
+                            Start Your AI Journey
+                        </a>
+                        <a href="#services" class="magnetic-hover px-8 py-4 border-2 border-purple-600 text-purple-400 rounded-full font-bold text-lg transition-all duration-300 hover:bg-purple-600 hover:text-white">
+                            Explore Services
+                        </a>
+                    </div>
+                    
+                    <!-- Company Logos -->
+                    <div class="mt-12">
+                        <p class="text-sm text-gray-400 mb-4">Trusted by professionals working at:</p>
+                        <div class="flex items-center justify-center md:justify-start space-x-8 opacity-60 hover:opacity-100 transition-opacity duration-300">
+                            <div class="h-8 px-4 bg-white rounded flex items-center justify-center company-logo">
+                                <span class="text-blue-600 font-bold text-sm">Google</span>
+                            </div>
+                            <div class="h-8 px-4 bg-white rounded flex items-center justify-center company-logo">
+                                <span class="text-green-600 font-bold text-sm">Microsoft</span>
+                            </div>
+                            <div class="h-8 px-4 bg-white rounded flex items-center justify-center company-logo">
+                                <span class="text-orange-600 font-bold text-sm">Amazon</span>
+                            </div>
+                            <div class="h-8 px-4 bg-white rounded flex items-center justify-center company-logo">
+                                <span class="text-blue-500 font-bold text-sm">Meta</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="float-animation">
+                        <div class="w-96 h-64 bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl shadow-xl flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold">AI-Powered Future</h3>
+                                <p class="text-sm opacity-80">Join the revolution</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why AI Section -->
+        <section id="why-important" class="py-16 md:py-24 bg-gray-800 fade-in">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-extrabold text-white sm:text-4xl mb-4">Why AI is Revolutionizing Every Industry</h2>
+                    <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                        Artificial Intelligence isn't just the future—it's transforming businesses today. Companies investing in AI are seeing unprecedented growth and efficiency.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-gray-900 p-8 rounded-xl border-l-4 border-green-500 service-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M7 14l3-3 3 3 5-5-1.41-1.41L12 12.17 9.41 9.59 6 13l1 1z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Market Explosion</h3>
+                        </div>
+                        <p class="text-gray-300">The global AI market is expected to reach $1.8 trillion by 2030. Companies are racing to adopt AI solutions, creating massive demand for skilled professionals.</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-8 rounded-xl border-l-4 border-blue-500 service-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M13,2.05V5.08C16.39,5.57 19,8.47 19,12C19,12.9 18.82,13.75 18.5,14.54L21.12,16.07C21.68,14.83 22,13.45 22,12C22,6.82 18.05,2.55 13,2.05M12,19A7,7 0 0,1 5,12C5,8.47 7.61,5.57 11,5.08V2.05C5.94,2.55 2,6.81 2,12A10,10 0 0,0 12,22C15.3,22 18.23,20.39 20.1,17.93L17.45,16.38C16.17,18 14.21,19 12,19Z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Productivity Boost</h3>
+                        </div>
+                        <p class="text-gray-300">AI can automate repetitive tasks, analyze vast datasets in seconds, and provide intelligent insights that would take humans weeks to discover.</p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-8 rounded-xl border-l-4 border-purple-500 service-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9,7V9H7V15H9V17H11V7H9M13,7V17H15V15H17V9H15V7H13Z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Innovation Driver</h3>
+                        </div>
+                        <p class="text-gray-300">From healthcare breakthroughs to autonomous vehicles, AI is enabling innovations that were once science fiction. Be part of this transformation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-16 md:py-24 bg-gray-900 fade-in">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl mb-4">Our Core Expertise</h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-12">
+                    We guide you through the complexities of AI with hands-on training, real-world projects, and industry insights.
+                </p>
+                <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                    <!-- Service 1 -->
+                    <div class="service-card bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-purple-600">
+                        <div class="flex justify-center items-center h-16 w-16 mx-auto bg-purple-600/20 rounded-full mb-6">
+                            <svg class="w-8 h-8 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">AI & ML Consulting</h3>
+                        <p class="text-gray-300 mb-4">Master machine learning algorithms, neural networks, and deep learning frameworks. Build intelligent systems that can learn and adapt.</p>
+                        
+                        <div class="text-sm text-purple-300 bg-purple-900/20 p-3 rounded-lg">
+                            <p class="font-semibold mb-2">💰 Why it's trending:</p>
+                            <p>Average ML Engineer salary: $150,000+</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 2 -->
+                    <div class="service-card bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-teal-600">
+                        <div class="flex justify-center items-center h-16 w-16 mx-auto bg-teal-600/20 rounded-full mb-6">
+                            <svg class="w-8 h-8 text-teal-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M21,6V8H3V6H21M3,18H12V16H3V18M3,13H21V11H3V13Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Large Language Models</h3>
+                        <p class="text-gray-300 mb-4">Learn to build, fine-tune, and deploy LLMs like GPT, Claude, and LLaMA. Create applications that understand and generate human language.</p>
+                        
+                        <div class="text-sm text-teal-300 bg-teal-900/20 p-3 rounded-lg">
+                            <p class="font-semibold mb-2">🔥 Why it's hot:</p>
+                            <p>LLM specialists earn $200,000+ at top tech companies.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 3 -->
+                    <div class="service-card bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-orange-600">
+                        <div class="flex justify-center items-center h-16 w-16 mx-auto bg-orange-600/20 rounded-full mb-6">
+                            <svg class="w-8 h-8 text-orange-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,3C7.58,3 4,4.79 4,7C4,9.21 7.58,11 12,11C16.42,11 20,9.21 20,7C20,4.79 16.42,3 12,3M4,9V12C4,14.21 7.58,16 12,16C16.42,16 20,14.21 20,12V9C20,11.21 16.42,13 12,13C7.58,13 4,11.21 4,9M4,14V17C4,19.21 7.58,21 12,21C16.42,21 20,19.21 20,17V14C20,16.21 16.42,18 12,18C7.58,18 4,16.21 4,14Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">RAG Systems</h3>
+                        <p class="text-gray-300 mb-4">Build Retrieval-Augmented Generation systems that combine the power of LLMs with real-time knowledge retrieval.</p>
+                        
+                        <div class="text-sm text-orange-300 bg-orange-900/20 p-3 rounded-lg">
+                            <p class="font-semibold mb-2">📈 Industry demand:</p>
+                            <p>Every major company is building RAG systems.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 4 -->
+                    <div class="service-card bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-pink-600">
+                        <div class="flex justify-center items-center h-16 w-16 mx-auto bg-pink-600/20 rounded-full mb-6">
+                            <svg class="w-8 h-8 text-pink-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M7.5,13A2.5,2.5 0 0,0 5,15.5A2.5,2.5 0 0,0 7.5,18A2.5,2.5 0 0,0 10,15.5A2.5,2.5 0 0,0 7.5,13M16.5,13A2.5,2.5 0 0,0 14,15.5A2.5,2.5 0 0,0 16.5,18A2.5,2.5 0 0,0 19,15.5A2.5,2.5 0 0,0 16.5,13Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">AI Agents Development</h3>
+                        <p class="text-gray-300 mb-4">Create autonomous AI agents that can reason, plan, and execute complex tasks. Build the next generation of intelligent automation.</p>
+                        
+                        <div class="text-sm text-pink-300 bg-pink-900/20 p-3 rounded-lg">
+                            <p class="font-semibold mb-2">🚀 Future of work:</p>
+                            <p>Early specialists commanding $180,000+.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Section -->
+        <section id="career" class="py-16 md:py-24 bg-gray-800 fade-in">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-extrabold text-white sm:text-4xl mb-4">High-Paying Career Opportunities</h2>
+                    <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                        Tech companies are offering unprecedented compensation packages for AI talent.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-900 p-6 rounded-xl border-2 border-green-500 service-card">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center">
+                            <svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                            </svg>
+                            ML Engineer
+                        </h3>
+                        <div class="space-y-2 text-gray-300">
+                            <p><strong>Google:</strong> $180,000 - $300,000</p>
+                            <p><strong>Meta:</strong> $170,000 - $280,000</p>
+                            <p><strong>Microsoft:</strong> $160,000 - $270,000</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-6 rounded-xl border-2 border-blue-500 service-card">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center">
+                            <svg class="w-5 h-5 text-blue-400 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+                            </svg>
+                            AI Research Scientist
+                        </h3>
+                        <div class="space-y-2 text-gray-300">
+                            <p><strong>OpenAI:</strong> $250,000 - $500,000</p>
+                            <p><strong>DeepMind:</strong> $200,000 - $400,000</p>
+                            <p><strong>Anthropic:</strong> $220,000 - $450,000</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-6 rounded-xl border-2 border-purple-500 service-card">
+                        <h3 class="text-lg font-bold text-white mb-4 flex items-center">
+                            <svg class="w-5 h-5 text-purple-400 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2Z"/>
+                            </svg>
+                            AI Product Manager
+                        </h3>
+                        <div class="space-y-2 text-gray-300">
+                            <p><strong>Amazon:</strong> $190,000 - $320,000</p>
+                            <p><strong>Apple:</strong> $180,000 - $300,000</p>
+                            <p><strong>Netflix:</strong> $200,000 - $350,000</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 bg-gradient-to-r from-purple-900/50 to-pink-900/50 p-8 rounded-xl text-center">
+                    <h3 class="text-2xl font-bold text-white mb-4">Why Companies Pay Premium for AI Talent</h3>
+                    <div class="grid md:grid-cols-3 gap-6 text-gray-300">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-purple-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M16,4C18.2,4 20,5.8 20,8C20,10.2 18.2,12 16,12C13.8,12 12,10.2 12,8C12,5.8 13.8,4 16,4M16,6A2,2 0 0,0 14,8A2,2 0 0,0 16,10A2,2 0 0,0 18,8A2,2 0 0,0 16,6M8,4C10.2,4 12,5.8 12,8C12,10.2 10.2,12 8,12C5.8,12 4,10.2 4,8C4,5.8 5.8,4 8,4M8,6A2,2 0 0,0 6,8A2,2 0 0,0 8,10A2,2 0 0,0 10,8A2,2 0 0,0 8,6M16,13C18.67,13 21.33,13.67 22,15V20H20V16.5C19.33,15.5 17.67,15 16,15C14.33,15 12.67,15.5 12,16.5V20H10V15C10.67,13.67 13.33,13 16,13M8,13C10.67,13 13.33,13.67 14,15V20H2V15C2.67,13.67 5.33,13 8,13M8,15C6.33,15 4.67,15.5 4,16.5V18H12V16.5C11.33,15.5 9.67,15 8,15Z"/>
+                                </svg>
+                            </div>
+                            <p><strong>Talent Shortage:</strong> Only 300,000 AI professionals globally, but demand is for 3 million+</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/>
+                                </svg>
+                            </div>
+                            <p><strong>High ROI:</strong> AI projects can generate 10-20x return on investment for companies</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-yellow-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M5,16L3,5H1V3H4L6,14H18.5L19.5,12H8.5L9.5,10H21.47L19,17H7M7,19A2,2 0 0,0 5,21A2,2 0 0,0 7,23A2,2 0 0,0 9,21A2,2 0 0,0 7,19M17,19A2,2 0 0,0 15,21A2,2 0 0,0 17,23A2,2 0 0,0 19,21A2,2 0 0,0 17,19Z"/>
+                                </svg>
+                            </div>
+                            <p><strong>Competitive Edge:</strong> Companies with AI talent outperform competitors by 40%+</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technologies Section -->
+        <section id="tech" class="py-16 md:py-24 bg-gray-900 fade-in">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl mb-4">Technologies We Master</h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-12">
+                    Our expertise spans the entire AI technology stack, from foundational frameworks to cutting-edge tools.
+                </p>
+                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-8">
+                    <div class="flex flex-col items-center space-y-2 p-4 rounded-xl bg-gray-800 service-card">
+                        <div class="w-12 h-12 bg-purple-600/20 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2Z"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm text-gray-300">ChatGPT/GPT-4</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center space-y-2 p-4 rounded-xl bg-gray-800 service-card">
+                        <div class="w-12 h-12 bg-blue-600/20 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8,3A2,2 0 0,0 6,5V9A2,2 0 0,1 4,11H3V13H4A2,2 0 0,1 6,15V19A2,2 0 0,0 8,21H10V19H8V14A2,2 0 0,0 6,12A2,2 0 0,0 8,10V5H10V3H8M16,3A2,2 0 0,1 18,5V9A2,2 0 0,0 20,11H21V13H20A2,2 0 0,0 18,15V19A2,2 0 0,1 16,21H14V19H16V14A2,2 0 0,1 18,12A2,2 0 0,1 16,10V5H14V3H16Z"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm text-gray-300">Python/PyTorch</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center space-y-2 p-4 rounded-xl bg-gray-800 service-card">
+                        <div class="w-12 h-12 bg-orange-600/20 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-orange-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm text-gray-300">TensorFlow</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center space-y-2 p-4 rounded-xl bg-gray-800 service-card">
+                        <div class="w-12 h-12 bg-green-600/20 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M6,2A3,3 0 0,1 9,5C9,6.28 8.19,7.38 7.06,7.81C7.15,8.27 7.39,8.83 8,9.63C9,10.92 11,12.83 12,14C13,12.83 15,10.92 16,9.63C16.61,8.83 16.85,8.27 16.94,7.81C15.81,7.38 15,6.28 15,5A3,3 0 0,1 18,2A3,3 0 0,1 21,5C21,6.32 20.14,7.45 18.95,7.85C18.87,8.37 18.64,9 18,9.83C17,11.17 15,13.08 14,14.38C13.39,15.17 13.15,15.73 13.06,16.19C14.19,16.62 15,17.72 15,19A3,3 0 0,1 12,22A3,3 0 0,1 9,19C9,17.72 9.81,16.62 10.94,16.19C10.85,15.73 10.61,15.17 10,14.38C9,13.08 7,11.17 6,9.83C5.36,9 5.13,8.37 5.05,7.85C3.86,7.45 3,6.32 3,5A3,3 0 0,1 6,2M6,4A1,1 0 0,0 5,5A1,1 0 0,0 6,6A1,1 0 0,0 7,5A1,1 0 0,0 6,4M18,4A1,1 0 0,0 17,5A1,1 0 0,0 18,6A1,1 0 0,0 19,5A1,1 0 0,0 18,4M12,18A1,1 0 0,0 11,19A1,1 0 0,0 12,20A1,1 0 0,0 13,19A1,1 0 0,0 12,18Z"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm text-gray-300">AWS/Azure</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center space-y-2 p-4 rounded-xl bg-gray-800 service-card">
+                        <div class="w-12 h-12 bg-teal-600/20 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-teal-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,3C7.58,3 4,4.79 4,7C4,9.21 7.58,11 12,11C16.42,11 20,9.21 20,7C20,4.79 16.42,3 12,3M4,9V12C4,14.21 7.58,16 12,16C16.42,16 20,14.21 20,12V9C20,11.21 16.42,13 12,13C7.58,13 4,11.21 4,9M4,14V17C4,19.21 7.58,21 12,21C16.42,21 20,19.21 20,17V14C20,16.21 16.42,18 12,18C7.58,18 4,16.21 4,14Z"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm text-gray-300">Vector DBs</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center space-y-2 p-4 rounded-xl bg-gray-800 service-card">
+                        <div class="w-12 h-12 bg-pink-600/20 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-pink-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M5.41,21L6.12,17H2.12L2.47,15H6.47L7.53,9H3.53L3.88,7H7.88L8.59,3H10.59L9.88,7H15.88L16.59,3H18.59L17.88,7H21.88L21.53,9H17.53L16.47,15H20.47L20.12,17H16.12L15.41,21H13.41L14.12,17H8.12L7.41,21H5.41M9.53,9L8.47,15H14.47L15.53,9H9.53Z"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm text-gray-300">Hugging Face</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center space-y-2 p-4 rounded-xl bg-gray-800 service-card">
+                        <div class="w-12 h-12 bg-yellow-600/20 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4,6H20V16H4M20,18A2,2 0 0,0 22,16V6C22,4.89 21.1,4 20,4H4C2.89,4 2,4.89 2,6V16A2,2 0 0,0 4,18H0V20H24V18H20Z"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm text-gray-300">LangChain</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center space-y-2 p-4 rounded-xl bg-gray-800 service-card">
+                        <div class="w-12 h-12 bg-red-600/20 rounded-full flex items-center justify-center">
+                            <svg class="w-8 h-8 text-red-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm text-gray-300">NVIDIA GPUs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 md:py-24 bg-gray-800 fade-in">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-extrabold sm:text-4xl text-white mb-4">Ready to Transform Your Career?</h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
+                    Join thousands of professionals who've already started their AI journey. Get personalized guidance and hands-on training from industry experts.
+                </p>
+                
+                <div class="max-w-lg mx-auto bg-gray-900 p-8 rounded-xl shadow-2xl text-left border-2 border-purple-600">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-1">
+                                Full Name *
+                            </label>
+                            <input
+                                type="text"
+                                name="name"
+                                id="name"
+                                required
+                                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 text-white"
+                                placeholder="Your full name"
+                            />
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1">
+                                Email Address *
+                            </label>
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                required
+                                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 text-white"
+                                placeholder="your@email.com"
+                            />
+                        </div>
+                        
+                        <div>
+                            <label for="interest" class="block text-sm font-medium text-gray-300 mb-1">
+                                Primary Interest
+                            </label>
+                            <select
+                                id="interest"
+                                name="interest"
+                                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 text-white"
+                            >
+                                <option value="">Select your interest</option>
+                                <option value="ai-ml-consulting">AI & ML Consulting</option>
+                                <option value="llm-training">Large Language Models</option>
+                                <option value="rag-systems">RAG Systems</option>
+                                <option value="ai-agents">AI Agents Development</option>
+                                <option value="career-transition">Career Transition to AI</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-1">
+                                Tell us about your goals
+                            </label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="4"
+                                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 text-white"
+                                placeholder="What are your AI learning goals? Current experience level? Specific challenges you're facing?"
+                            ></textarea>
+                        </div>
+                        
+                        <button
+                            type="submit"
+                            class="w-full px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-bold text-lg transition-transform duration-300 hover:scale-105 hover:shadow-lg magnetic-hover"
+                        >
+                            Register Now
+                        </button>
+                    </form>
+                    
+                    <div class="mt-6 text-center text-sm text-gray-400 space-y-2">
+                        <p>📞 <strong>consultation call</strong> - No commitment required</p>
+                        <p>🎯 <strong>Personalized learning roadmap</strong> - Tailored to your goals</p>
+                        <p>💼 <strong>Career guidance</strong> - Direct path to high-paying AI roles</p>
+                    </div>
+                </div>
+                
+                <!-- Success Stories -->
+                <div class="mt-16">
+                    <h3 class="text-2xl font-bold text-white mb-8">Success Stories</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-gray-900 p-6 rounded-xl service-card">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">
+                                    S
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="font-semibold text-white">Sarah Chen</h4>
+                                    <p class="text-sm text-gray-400">Software Developer → ML Engineer</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm">"Landed a $180k ML Engineer role at Google after 6 months of training. The hands-on projects and mentorship made all the difference!"</p>
+                        </div>
+                        
+                        <div class="bg-gray-900 p-6 rounded-xl service-card">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold">
+                                    M
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="font-semibold text-white">Mike Rodriguez</h4>
+                                    <p class="text-sm text-gray-400">Business Analyst → AI Product Manager</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm">"Transitioned from traditional PM to AI PM at Microsoft. The comprehensive training covered both technical and business aspects perfectly."</p>
+                        </div>
+                        
+                        <div class="bg-gray-900 p-6 rounded-xl service-card">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold">
+                                    A
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="font-semibold text-white">Aisha Patel</h4>
+                                    <p class="text-sm text-gray-400">Data Scientist → LLM Specialist</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm">"Built my own LLM-powered startup after the training. Now consulting for Fortune 500 companies on their AI strategy."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                            AI
+                        </div>
+                        <span class="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">AI Academy</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Empowering professionals with cutting-edge AI skills and career guidance.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://linkedin.com" class="text-gray-400 hover:text-purple-400 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com" class="text-gray-400 hover:text-purple-400 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="https://youtube.com" class="text-gray-400 hover:text-purple-400 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="font-semibold text-white mb-4">Services</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#services" class="hover:text-purple-400 transition-colors">AI & ML Consulting</a></li>
+                        <li><a href="#services" class="hover:text-purple-400 transition-colors">LLM Training</a></li>
+                        <li><a href="#services" class="hover:text-purple-400 transition-colors">RAG Systems</a></li>
+                        <li><a href="#services" class="hover:text-purple-400 transition-colors">AI Agents</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div>
+                    <h3 class="font-semibold text-white mb-4">Resources</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-purple-400 transition-colors">Learning Paths</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-colors">Career Guide</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-colors">Industry Reports</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="font-semibold text-white mb-4">Contact</h3>
+                    <div class="space-y-2 text-gray-400">
+                        <p class="flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            rajendramehta@gmail.com
+                        </p>
+                        <p class="flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                            +1 (555) 123-4567
+                        </p>
+                        <p class="flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            Vadodara
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p>&copy; 2025 AI Academy. All rights reserved. | <a href="#" class="hover:text-purple-400 transition-colors">Privacy Policy</a> | <a href="#" class="hover:text-purple-400 transition-colors">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Lucide icons if available
+            if (typeof lucide !== 'undefined') {
+                try {
+                    lucide.createIcons();
+                } catch (error) {
+                    console.warn('Lucide icons failed to load:', error);
+                }
+            }
+
+            // Apply custom cursor for desktop
+            if (window.innerWidth > 768) {
+                document.body.classList.add('js-enabled');
+            }
+
+            // Custom cursor movement
+            const customCursor = document.getElementById('custom-cursor');
+            let cursorVisible = false;
+            
+            document.addEventListener('mousemove', function(e) {
+                if (window.innerWidth > 768) {
+                    if (!cursorVisible) {
+                        customCursor.style.opacity = '0.8';
+                        cursorVisible = true;
+                    }
+                    customCursor.style.left = e.clientX + 'px';
+                    customCursor.style.top = e.clientY + 'px';
+                }
+            });
+
+            document.addEventListener('mouseleave', function() {
+                customCursor.style.opacity = '0';
+                cursorVisible = false;
+            });
+
+            // Mobile menu functionality
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('show');
+            });
+            
+            mobileMenuClose.addEventListener('click', function() {
+                mobileMenu.classList.remove('show');
+            });
+
+            // Close mobile menu when clicking on links
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('show');
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        // Close mobile menu if open
+                        mobileMenu.classList.remove('show');
+                    }
+                });
+            });
+
+            // Form submission handling
+            const contactForm = document.getElementById('contact-form');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(contactForm);
+                const data = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    interest: formData.get('interest'),
+                    message: formData.get('message')
+                };
+                
+                // Simulate form submission
+                const submitButton = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                
+                submitButton.textContent = 'Submitting...';
+                submitButton.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    submitButton.textContent = 'Thank you! We\'ll be in touch soon 🚀';
+                    submitButton.classList.remove('from-purple-600', 'to-pink-600');
+                    submitButton.classList.add('from-green-600', 'to-green-700');
+                    
+                    setTimeout(() => {
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
+                        submitButton.classList.remove('from-green-600', 'to-green-700');
+                        submitButton.classList.add('from-purple-600', 'to-pink-600');
+                        contactForm.reset();
+                    }, 3000);
+                }, 1000);
+                
+                console.log('Form submitted:', data);
+            });
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Apply initial styles and observe elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Add hover effects to interactive elements
+            document.querySelectorAll('.service-card, .magnetic-hover').forEach(el => {
+                el.addEventListener('mouseenter', function() {
+                    if (window.innerWidth > 768) {
+                        this.style.transform = 'translateY(-5px) scale(1.02)';
+                    }
+                });
+                
+                el.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+
+            // Keyboard navigation support
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    customCursor.style.opacity = '0';
+                }
+            });
+
+            // Window resize handler
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 768) {
+                    document.body.classList.remove('js-enabled');
+                    customCursor.style.opacity = '0';
+                } else {
+                    document.body.classList.add('js-enabled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
